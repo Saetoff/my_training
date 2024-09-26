@@ -4,5 +4,5 @@ print(immutable_var)
 #print(immutable_var)
 # Тип данных tuple, это не изменяемый тип обьекта в отличий от строк! не поддерживает элемент по обращениям.
 mutable_list = ([1, 2], 3, "bonus", type)
-mutable_list[0][1] = 5
+mutable_list[0][1] = 5 # но можно изменять строки внутри кортежа
 print(mutable_list)
