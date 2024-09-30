@@ -6,4 +6,7 @@ b = sum(grades[1]) / len(grades[1])
 j = sum(grades[2]) / len(grades[2])
 k = sum(grades[3]) / len(grades[3])
 s = sum(grades[4]) / len(grades[4])
-print()
+grades_average = [a, b, j, k, s]
+dictionary = dict(zip(students_list, grades_average))
+print(dictionary)
+
