@@ -23,14 +23,13 @@ def is_contains(string = str, list1 = list): # принимает два арг�
 list_to_search = ['234234', '2343243423', '343', '444', '444333']
 i = string_info('one')
 print(i)
-i = string_info('tho')
+i = string_info('thoooo')
 print(i)
-i = string_info('three')
-print(i)
+
 
 j = is_contains('444', list_to_search)
 print(j)
-j = is_contains('444333', list_to_search)
+j = is_contains('44433300', list_to_search)
 print(j)
 
 print(calls)
