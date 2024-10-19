@@ -9,6 +9,8 @@ def get_shifr(n):
     list = ''
     for i in range(1, n):
         for j in range(i, n):
+            if i == j:
+                continue
             if n % (i + j) == 0:
                 list += str(i) + str(j)
     return list
