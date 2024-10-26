@@ -4,4 +4,5 @@ def test_function():
     inner_function()
 
 
+#inner_function() # вызов функций вне test_function
 test_function()
