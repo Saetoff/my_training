@@ -9,7 +9,11 @@ class House:
         else:
             for i in range(1, new_floor + 1):
                 print(i)
-
+    def __len__(self):
+        if isinstance(self.number_of_floors, int):
+            return self.number_of_floors
+    def __str__(self):
+        return f'Название: {self.name}, кол-во этажей: {self.number_of_floors}'
 
 penthouse = House("Пентхаус", 5)
 penthouse.go_to(5)
