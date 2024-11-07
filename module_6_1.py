@@ -20,11 +20,26 @@ class Plant:
 
 # Наследники
 class Mammal(Animal):
-    pass
+    def eat(self,food):
+        if food.edible:
+            print(f'{self.name} сьел {food.name}')
+            self.fed = True
+        else:
+            print(f'{self.name} не стал есть {food.name}')
+            self.alive = False
+
 class Predator(Animal):
-    pass
+    def eat(self, food):
+        if food.edible:
+            print(f'{self.name} сьел {food.name}')
+            self.fed = True
+        else:
+            print(f'{self.name} не стал есть {food.name}')
+            self.alive = False
+
 class Flower(Plant):
-    pass
+    def __init__(self, name, edible = False):
+        super().__init__(name, edible)
 class Fruit(Plant):
     def __init__(self, name, edible = True):
         super().__init__(name, edible)
