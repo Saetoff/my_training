@@ -1,3 +1,4 @@
+import time
 
 class User:
     def __init__(self, nickname: str, password: str, age: int):
@@ -5,25 +6,66 @@ class User:
         self.password = hash(password)
         self.age = age
 
+    def check_password(self, password: str) -> bool:
+        return self.password == hash(password)
 
 
-class Urtube:
-    def __init__(self, users, videos, current_user):
-        self.users = users
-        self.videos = videos
-        self.current_user = current_user
-    def log_in(self, nickname, password):
-        pass
-    def register(self):
-        pass
+class UrTube:
+    def __init__(self):
+        self.users = []
+        self.videos = []
+        self.current_user = None
+
+    def log_in(self, nickname: str, password: str):
+        for user in self.users:
+            if user.nickname == nickname and user.check_password(password):
+                self.current_user = user
+                print(f'Пользователь {nickname} вошел в систему!')
+                return
+        print('Неверный логин или пароль')
+
+    def register(self, nickname: str, password: str, age: int):
+        for user in self.users:
+            if user.nickname == nickname:
+                print(f'Пользователь {nickname} уже существует.')
+                return
+        new_user = User(nickname, password, age)
+        self.users.append(new_user)
+        self.current_user = new_user
+        print(f'Пользователь {nickname} зарегистрирован и вошел в систему!')
+
     def log_out(self):
-        pass
-    def add(self):
-        pass
-    def get_videos(self):
-        pass
-    def watch_video(self):
-        pass
+        if self.current_user is not None:
+            print(f'Пользователь {self.current_user.nickname} вышел из системы!')
+            self.current_user = None
+        else:
+            print('Никто не вошел в систему!')
+
+    def add(self, *videos):
+        for video in videos:
+            if video not in self.videos:
+                self.videos.append(video)
+
+    def get_videos(self, keyword: str):
+        return [video.title for video in self.videos if keyword.lower() in video.title.lower()]
+
+    def watch_video(self, title: str):
+        if self.current_user is None:
+            print('Войдите в аккаунт, чтобы смотреть видео')
+            return
+        for video in self.videos:
+            if video.title == title:
+                if video.adult_mode and self.current_user.age < 18:
+                    print("Вам нет 18 лет, пожалуйста покиньте страницу")
+                    return
+                while video.time_now < video.duration:
+                    print(f'Смотрим: {video.title}, время: {video.time_now}s')
+                    video.time_now += 1
+                    time.sleep(1)  # пауза в 1 секунду
+                print("Конец видео")
+                video.time_now = 0  # Сброс текущего времени просмотра
+                return
+        print("Видео не найдено.")
 
 
 class Video:
@@ -32,6 +74,10 @@ class Video:
         self.duration = duration
         self.adult_mode = adult_mode
         self.time_now = time_now
+
+    def __str__(self):
+        return f'Video(title = {self.title}, duration = {self.duration}, adult_mode = {self.adult_mode})'
+
 
 
 if __name__ == '__main__':
