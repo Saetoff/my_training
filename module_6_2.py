@@ -23,7 +23,7 @@ class Vehicle:
         print(f'Владелец: {self.owner}')
 
     def set_color(self, new_color: str):
-        if new_color in self._COLOR_VARIANTS:
+        if new_color.lower() in self._COLOR_VARIANTS:
             self.__color = new_color
         else:
             print(f'Нельзя сменить цвет на {new_color}')
