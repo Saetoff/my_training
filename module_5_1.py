@@ -3,7 +3,7 @@ class House:
 
     def __new__(cls, *args, **kwargs):
         cls.houses_history.append(args[0])
-        
+
 
     def __init__(self, name, number_of_floors):
         self.name = name
