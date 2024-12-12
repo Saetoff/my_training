@@ -2,7 +2,7 @@ def add_everything_up(a, b):
     try:
         result = a + b
     except TypeError:
-        return f' {a}, {b}'  # Возвращаем сообщение об ошибке
+        return f' {a}{b}'  # Возвращаем сообщение об ошибке
     else:
         return f'{result: .3f}'  # Возвращаем результат сложения
 
